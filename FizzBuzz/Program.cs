@@ -8,8 +8,10 @@ Console.WriteLine("Me startar på 1 og går til 100: ");
 
 while (correct)
 {
-    var input = Console.ReadLine();
+    if (counter is 101)
+        break;
 
+    var input = Console.ReadLine();
     var result = FizzBuzzService.FizzBuzzMethod(counter);
     if (input != result)
     {
