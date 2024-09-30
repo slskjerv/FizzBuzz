@@ -2,21 +2,26 @@
 {
     public class FizzBuzzService
     {
-        public static string FizzBuzzMethod(int input)
+        public static string FizzBuzzMethod(int input, bool fuzzRule, bool jazzRule)
         {
             if (input < 1 || input > 100)
                 return StringConstants.WrongInput;
 
-            if (input % 3 == 0 && input % 5 == 0)
-                return StringConstants.Fizz + StringConstants.Buzz;
+            var output = "";
 
             if (input % 3 == 0)
-                return StringConstants.Fizz;
-
+                output += StringConstants.Fizz;
             if (input % 5 == 0)
-                return StringConstants.Buzz;
+                output += StringConstants.Buzz;
+            if (fuzzRule && input % 4 == 0)
+                output += StringConstants.Fuzz;
+            if (jazzRule && input % 9 == 0)
+                output += StringConstants.Jazz;
 
-            return input.ToString();
+            if (string.IsNullOrEmpty(output))
+                return input.ToString();
+
+            return output;
         }
     }
 }

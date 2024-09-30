@@ -5,5 +5,7 @@
         public const string WrongInput = "Vennligst oppgi eit tal mellom 1 og 100";
         public const string Fizz = "Fizz";
         public const string Buzz = "Buzz";
+        public const string Fuzz = "Fuzz";
+        public const string Jazz = "Jazz";
     }
 }

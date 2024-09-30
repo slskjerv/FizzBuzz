@@ -12,7 +12,7 @@ while (correct)
         break;
 
     var input = Console.ReadLine();
-    var result = FizzBuzzService.FizzBuzzMethod(counter);
+    var result = FizzBuzzService.FizzBuzzMethod(counter, false, false);
     if (input != result)
     {
         Console.WriteLine($"Feil! Riktig svar er: {result}");
