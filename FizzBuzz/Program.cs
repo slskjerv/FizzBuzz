@@ -1,51 +1,26 @@
 ﻿using FizzBuzz;
 
 Console.WriteLine("Hei, velkommen til FizzBuzz!");
-Console.WriteLine("Er du klar for å spele? Ja/Nei");
+Console.WriteLine("Er du klar for å spele (1) eller spele av (2)? (Tast 1 eller 2)");
 
-if (Console.ReadLine() is "Nei")
+if (Console.ReadLine() is "2")
 {
-    Console.WriteLine("Greit, la meg printe ut FizzBuzz for deg da. " +
-        "Vil du ha det frå 1 til 100?");
-    if (Console.ReadLine() is "Ja")
-    {
-        for (int i = 0; i < 101; i++)
-        {
-            var result = FizzBuzzService.FizzBuzzMethod(i, false, false);
-            Console.WriteLine(result);
-        }
-    }
-    else
-    {
-        for (int i = 100; i > 0; i--)
-        {
-            var result = FizzBuzzService.FizzBuzzMethod(i, false, false);
-            Console.WriteLine(result);
-        }
+    Console.WriteLine("Greit, la meg printe ut FizzBuzz for deg. " +
+        "Vil du ha det forlengs (1) eller baklengs (2)?");
 
-        Console.WriteLine("Vanskeleg du skulle vere da! No fekk du det frå 100 til 1");
-    }
+    FizzBuzzService.PrintFizzBuzz(Console.ReadLine()!);
 
-    Console.WriteLine("Trykk enter for å lukke applikasjonen");
-    Console.ReadLine();
+    CloseConsole();
 }
 else
 {
-
     Console.WriteLine("Vil du spele med standardreglar? Ja/Nei");
-
-    var correct = true;
-    var fuzz = false;
-    var jazz = false;
-    var counter = 1;
-    var endCounter = 101;
-    var introText = "Me startar på 1 og går til 100: ";
 
     if (Console.ReadLine() is "Ja")
     {
-        Console.WriteLine(introText);
+        Console.WriteLine("Me startar på 1 og går til 100:");
 
-        PlayFizzBuzz(ref correct, fuzz, jazz, ref counter, endCounter);
+        FizzBuzzService.PlayFizzBuzz();
     }
     else
     {
@@ -58,50 +33,16 @@ else
 
         var number = Console.ReadLine();
 
-        if (number is "1")
-            fuzz = true;
-        if (number is "2")
-            jazz = true;
-        if (number is "3" || number is "5")
-        {
-            fuzz = true;
-            jazz = true;
-        }
-        if (number is "4" || number is "5")
-        {
-            counter = 100;
-            endCounter = 0;
-            introText = "Me startar på 100 og går nedover: ";
-        }
+        FizzBuzzService.SetRules(number);
 
-        Console.WriteLine(introText);
-
-        PlayFizzBuzz(ref correct, fuzz, jazz, ref counter, endCounter);
+        FizzBuzzService.PlayFizzBuzz();
     }
 
-    Console.WriteLine("Trykk enter for å lukke applikasjonen");
-    Console.ReadLine();
+    CloseConsole();
 }
 
-static void PlayFizzBuzz(ref bool correct, bool fuzz, bool jazz, ref int counter, int endCounter)
+static void CloseConsole()
 {
-    while (correct)
-    {
-        if (counter == endCounter)
-        {
-            Console.WriteLine("Du vant!!");
-            break;
-        }
-
-        var input = Console.ReadLine();
-        var result = FizzBuzzService.FizzBuzzMethod(counter, fuzz, jazz);
-
-        if (input?.ToLowerInvariant() != result.ToLowerInvariant())
-        {
-            Console.WriteLine($"Feil! Riktig svar er: {result}");
-            correct = false;
-        }
-
-        counter++;
-    }
+    Console.WriteLine("Trykk enter for å lukke applikasjonen");
+    Console.ReadLine();
 }
